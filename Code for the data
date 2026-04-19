@@ -1,0 +1,44 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+### Creating a File To navigate
+data = pd.read_csv("Gyimah.csv",sep="\t")
+display(data)
+
+data.info()
+data.describe()
+data.isnull().sum()
+### Creating a the average of each student in the class
+average_score = data[["Maths","Science","Communication Skills","Digital Electronic","Computer Science"]].mean()
+display(pd.DataFrame(average_score))
+
+
+# Creating the visual display of the file
+average_score.plot(kind="bar")
+plt.xticks(rotation=45)
+plt.title("Average of each subject")
+plt.show()
+
+###  Finding the highest score in the subject
+highest_score = data.groupby("Name")["Scores"].max()
+display(pd.DataFrame(highest_score))
+
+# Creating the visual display of your data
+highest_score.plot(kind="bar")
+plt.xticks(rotation=55)
+plt.title("Highest Score in the score")
+plt.xlabel("Name")
+plt.ylabel("Scores")
+plt.show()
+### Finding the subject with the highest scores
+highest_subject = data[["Maths","Science","Communication Skills","Digital Electronic","Computer Science"]].sum()
+display(pd.DataFrame(highest_subject))
+
+# Creating The Visual Display
+
+highest_subject.plot(kind="bar")
+plt.title("Total Scores in Each Subject")
+plt.xlabel("Subject",color="red")
+plt.ylabel("Scores",color="blue")
+plt.show()
